@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Registrieren</h2>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Registrieren</button>
+</form>
+<a href="{% url 'login' %}">Bereits ein Konto? Login</a>
+{% endblock %}

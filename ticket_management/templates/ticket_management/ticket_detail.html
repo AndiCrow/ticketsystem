@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ ticket.title }}</h1>
+<p><strong>Kategorie:</strong> {{ ticket.category }}</p>
+<p><strong>Status:</strong> {{ ticket.get_status_display }}</p>
+<p><strong>Beschreibung:</strong></p>
+<p>{{ ticket.description }}</p>
+<p><small>Erstellt am {{ ticket.created_at|date:"d.m.Y H:i" }} von {{ ticket.created_by }}</small></p>
+
+<h3>Notizen</h3>
+<ul>
+    {% for note in notes %}
+        <li>{{ note.created_by }} schrieb am {{ note.created_at|date:"d.m.Y H:i" }}: {{ note.content }}</li>
+    {% empty %}
+        <p>Keine Notizen vorhanden.</p>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'edit_ticket' ticket.id %}" class="btn btn-info">Ticket bearbeiten</a>
+<a href="{% url 'ticket_list' %}" class="btn btn-secondary">Zurück zur Übersicht</a>
+<a href="{% url 'change_ticket_status' ticket.id %}" class="btn btn-warning">Status ändern</a>
+{% endblock %}

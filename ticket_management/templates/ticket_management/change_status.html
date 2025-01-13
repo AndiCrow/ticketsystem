@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Status ändern: {{ ticket.title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Status aktualisieren</button>
+    <a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-secondary">Abbrechen</a>
+</form>
+{% endblock %}

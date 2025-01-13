@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Ticket bearbeiten: {{ ticket.title }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <h3>Ticket bearbeiten</h3>
+    {{ ticket_form.as_p }}
+    <h3>Notiz hinzufügen</h3>
+    {{ note_form.as_p }}
+    <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
+
+<a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-secondary mt-3">Zurück</a>
+{% endblock %}
